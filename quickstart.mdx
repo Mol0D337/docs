@@ -1,0 +1,58 @@
+---
+title: "Quickstart"
+icon: "rocket"
+---
+
+### Make your first API call
+
+Getting started with the DuelDuck Prediction API only takes a few steps. After registering, create a project in the DuelDuck API dashboard and generate your API key.
+
+The dashboard allows API owners to manage the entire prediction lifecycle in one place — create and resolve predictions, monitor activity and statistics, and track or claim commission earnings.
+
+Once your API key is generated, you can start sending authenticated requests from your application to interact with the Prediction API.
+
+The API is designed for simple integration into both web and mobile applications, allowing you to quickly launch prediction market functionality while keeping full control over your frontend and user experience.
+
+### Example request
+
+The following example demonstrates how to send your first authenticated request to the Prediction API.
+
+**Typically, requests include:**
+
+- your API key in the authorization header;
+- the endpoint URL;
+- request parameters or JSON body depending on the action;
+- prediction configuration data such as title, deadline, currency, pricing model, and fee settings.
+
+Use this example as a starting point for integrating prediction creation and management into your application.
+
+<RequestExample>
+
+```text filename
+//code here
+```
+
+</RequestExample>
+
+### Example response
+
+After a successful request, the API returns a structured JSON response containing prediction data and operation status information.
+
+**Responses may include:**
+
+- prediction identifiers;
+- current status;
+- voting configuration;
+- timestamps and deadlines;
+- supported currency information;
+- transaction or smart contract references.
+
+You can use the returned data to display predictions in your interface, track market activity, and synchronize frontend state with on-chain prediction data.
+
+<ResponseExample>
+
+```text filename
+//code here
+```
+
+</ResponseExample>

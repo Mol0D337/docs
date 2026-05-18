@@ -1,0 +1,93 @@
+---
+title: "GET /duel/public/{id}"
+---
+
+Retrieve a prediction by its ID without requiring authentication. Returns the prediction details if found.
+
+### **Parameters**
+
+| Name | Type | Path | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| id | string | id | yes | Prediction ID |
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Prediction details.
+
+```text
+{
+  "approved_by": "string",
+  "cancellation_reason": "string",
+  "commission": 0,
+  "commission_rate": 0,
+  "created_at": "string",
+  "deadline": "string",
+  "duel_info": {
+    "additionalProp1": "string",
+    "additionalProp2": "string",
+    "additionalProp3": "string"
+  },
+  "duel_price": 0,
+  "final_result": 0,
+  "id": "string",
+  "is_owner_resolving": true,
+  "is_self_resolved": true,
+  "logo_url": "string",
+  "max_price": 0,
+  "min_price": 0,
+  "owner_id": "string",
+  "players_count": 0,
+  "price_type": "string",
+  "project_id": "string",
+  "question": "string",
+  "refunded_players_count": 0,
+  "resolved_at": "string",
+  "resolved_by": "string",
+  "room_number": 0,
+  "room_token_pda": "string",
+  "slug": "string",
+  "source_of_truth": "string",
+  "status": 0,
+  "symbol": "string",
+  "updated_at": "string",
+  "usd_price": 0,
+  "winners_count": 0
+}
+```
+
+#### Code 400
+
+Invalid prediction ID.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 404
+
+Prediction not found.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

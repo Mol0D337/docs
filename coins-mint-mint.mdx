@@ -1,0 +1,58 @@
+---
+title: "GET /coins/name/{name}"
+---
+
+Retrieve Solana token information by searching for tokens with the specified name.
+
+### Parameters
+
+| Name | Type | Path | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| name | string | name | yes | Token name to search for |
+
+### Responses
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Token information retrieved successfully.
+
+```text
+[
+  {
+    "decimals": 0,
+    "image_url": "string",
+    "is_verified": true,
+    "market_cap": 0,
+    "mint": "string",
+    "name": "string",
+    "program_id": "string",
+    "symbol": "string",
+    "updated_at": "string",
+    "usd_price": 0
+  }
+]
+```
+
+#### Code 400
+
+Invalid request data or empty token name.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error during token retrieval.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

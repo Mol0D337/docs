@@ -1,0 +1,69 @@
+---
+title: "GET /coins/solana-tokens/price"
+---
+
+Retrieve current token price by mint address (query param).
+
+### **Parameters**
+
+| Name | Type | Query | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| mint | string | mint | yes | Token mint address |
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Token price retrieved successfully.
+
+```text
+{
+  "price": 0
+}
+```
+
+#### Code 400
+
+Invalid request params.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 404
+
+Token not found.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 503
+
+External service unavailable.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

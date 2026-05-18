@@ -1,0 +1,129 @@
+---
+title: "POST /duel/solana"
+---
+
+Creates an application-based crypto prediction using the provided data. Requires authentication.
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Authorization | yes | Authorization Bearer token |
+
+### **Request**
+
+Prediction creation request.
+
+**Type:** object. **Request content type:** application / json . Body:
+
+```text
+{
+  "duel": {
+    "answer": 0,
+    "commission_rate": 0,
+    "deadline": "string",
+    "duel_info": {
+      "additionalProp1": "string",
+      "additionalProp2": "string",
+      "additionalProp3": "string"
+    },
+    "duel_price": 0,
+    "is_owner_resolving": true,
+    "logo_url": "string",
+    "max_price": 0,
+    "min_price": 0,
+    "price_type": "string",
+    "question": "string",
+    "source_of_truth": "string",
+    "symbol": "string"
+  },
+  "tx_hash": "string"
+}
+```
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Prediction created successfully.
+
+```text
+{
+  "duel": {
+    "approved_by": "string",
+    "cancellation_reason": "string",
+    "commission": 0,
+    "commission_rate": 0,
+    "created_at": "string",
+    "deadline": "string",
+    "duel_info": {
+      "additionalProp1": "string",
+      "additionalProp2": "string",
+      "additionalProp3": "string"
+    },
+    "duel_price": 0,
+    "final_result": 0,
+    "id": "string",
+    "is_owner_resolving": true,
+    "is_self_resolved": true,
+    "logo_url": "string",
+    "max_price": 0,
+    "min_price": 0,
+    "owner_id": "string",
+    "players_count": 0,
+    "price_type": "string",
+    "project_id": "string",
+    "question": "string",
+    "refunded_players_count": 0,
+    "resolved_at": "string",
+    "resolved_by": "string",
+    "room_number": 0,
+    "room_token_pda": "string",
+    "slug": "string",
+    "source_of_truth": "string",
+    "status": 0,
+    "symbol": "string",
+    "updated_at": "string",
+    "usd_price": 0,
+    "winners_count": 0
+  },
+  "result": {
+    "tx_hash": "string"
+  }
+}
+```
+
+#### Code 400
+
+Invalid request data.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 401
+
+Unauthorized - Invalid or missing claims.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

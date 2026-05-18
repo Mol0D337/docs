@@ -1,0 +1,53 @@
+---
+title: "GET /user/me/financial-history"
+---
+
+Returns the authenticated user's on-chain financial transaction history (prediction votes, refunds, rewards, commissions).
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Authorization | yes | Authorization Bearer token |
+| X-API-Key | string | X-API-Key | yes | Project API key |
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+List of financial transactions.
+
+```text
+[
+  {
+    "amount": 0,
+    "date": "string",
+    "tx_hash": "string",
+    "tx_type": 0
+  }
+]
+```
+
+#### Code 401
+
+Unauthorized.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

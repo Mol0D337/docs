@@ -1,0 +1,191 @@
+---
+title: "Admin prediction creation and resolve"
+---
+
+<Note>
+  In this document, the term Duel refers to a Prediction as it's used as the internal name on Duel Duck
+</Note>
+
+Partners and administrators can create predictions directly through admin endpoints. Predictions created this way become active immediately, allowing users to participate without any additional approval. After the prediction deadline passes, an authorized user submits the final result and rewards are distributed automatically.
+
+**Who:** users with role `Partner Admin` (role = 1), `Partner` (role = 2).\
+**Result:** duel created, participants voted, winners received their rewards.
+
+All admin prediction endpoints require:
+
+- `Authorization: Bearer <ACCESS_TOKEN>` ,
+- `X-API-Key: <API_KEY>` .
+
+### Step 1 — Sign in
+
+Follow steps 1–2 from Flow "Project creation" using the appropriate account email.
+
+### Step 2 — Create a duel
+
+Create a prediction by providing:
+
+- question,
+- asset,
+- source of truth,
+- entry price,
+- commission,
+- deadline,
+- image.
+
+A duel created via the admin endpoint is immediately set to **Active** status — no approval step required.
+
+<kbd>POST /admin/duel</kbd>
+
+**Authorization:** Bearer \<ACCESS\_TOKEN\>
+
+**X-API-Key:** \<API\_KEY\>
+
+**Content-Type:** application/json
+
+```text
+{
+
+  "symbol": "SOL",
+
+  "question": "Will SOL exceed $200 by end of month?",
+
+  "source_of_truth": "https://coinmarketcap.com/currencies/solana/",
+
+  "logo_url": "https://example.com/logo.png",
+
+  "duel_price": 1.0,
+
+  "price_type": "fixed",
+
+  "commission_rate": 5,
+
+  "is_owner_resolving": false,
+
+  "deadline": "2026-05-20T18:00:00Z",
+
+  "duel_info": {}
+
+}
+```
+
+**Response** contains the duel object with an `id` field needed for the resolve step.
+
+```text
+json
+
+{
+
+  "id": "<DUEL_ID>",
+
+  "status": 2,
+
+  ...
+
+}
+```
+
+\> `status: 2` = Active. `is_owner_resolving: false` means the duel is resolved by the role that created it, not the owner.
+
+### Step 3 — Users join the duel
+
+While the prediction is active and the deadline has not passed, users can join it. Users choose an outcome (for example, Yes or No) and submit a blockchain transaction to enter the prediction.
+
+This process has two parts:
+
+1. Request a prepared transaction from the API.
+
+2. Sign and submit the transaction to the blockchain.
+
+3. Confirm the transaction using its hash.
+
+#### **3.1 Get the signed transaction**
+
+<kbd>POST /duel/solana/join/sign-tx</kbd>
+
+**Authorization:** Bearer \<USER\_ACCESS\_TOKEN\>
+
+**X-API-Key:** \<API\_KEY\>
+
+**Content-Type:** application/json
+
+```text
+{
+
+  "duel_id": "<DUEL_ID>",
+
+  "answer": 1
+
+}
+```
+
+\> `answer: 1` = Yes, `answer: 0` = No.
+
+**Response:** `{ "tx": "<BASE64_TRANSACTION>" }`
+
+#### **3.2** The user signs and submits the transaction to Solana, obtaining a `tx_hash`.
+
+#### **3.3 Confirm the join**
+
+<kbd>POST /duel/solana/join</kbd>
+
+**Authorization:** Bearer \<USER\_ACCESS\_TOKEN\>
+
+**X-API-Key:** \<API\_KEY\>
+
+**Content-Type:** application/json
+
+```text
+{
+
+  "duel": {
+
+    "duel_id": "<DUEL_ID>",
+
+    "answer": 1
+
+  },
+
+  "tx_hash": "<TX_HASH>"
+
+}
+```
+
+### Step 4 — Resolve the duel
+
+After the deadline the duel automatically moves to `WaitingForResolve` state (status = 3). An authorized administrator submits the correct outcome.
+
+<kbd>PUT /admin/duel/resolve</kbd>
+
+**Authorization:** Bearer \<ACCESS\_TOKEN\>
+
+**X-API-Key:** \<API\_KEY\>
+
+**Content-Type:** application/json
+
+```text
+{
+
+  "duel_id": "<DUEL_ID>",
+
+  "answer": 1
+
+}
+```
+
+\> `answer` is the correct outcome. Participants who voted for it receive their reward.
+
+**Response:**
+
+```text
+json
+
+{
+
+  "tx_hashes": ["<TX_HASH_1>", "<TX_HASH_2>"],
+
+  "duel": { "id": "<DUEL_ID>", "status": 4, "final_result": 1, ... }
+
+}
+```
+
+`status: 4` = Resolved

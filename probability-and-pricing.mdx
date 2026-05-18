@@ -1,0 +1,51 @@
+---
+title: "Probability & Pricing"
+---
+
+Prediction markets display real-time participation data that reflects how users currently evaluate the likelihood of an event.
+
+### Chance indicator
+
+Each prediction card can display a Chance value — a percentage representing how many participants currently support the Yes outcome.
+
+**For example:**
+
+- 72% Chance means that most voting activity currently favors the event happening;
+- lower percentages indicate stronger support for the No outcome.
+
+This value updates dynamically as users continue participating in the market and provides a simple way to visualize current market sentiment.
+
+### Pricing models
+
+The Prediction API supports two participation models:
+
+#### Fixed price
+
+In a fixed-price prediction, every user pays the same predefined amount to participate.
+
+This model creates a simple and standardized voting experience where all participants contribute equally.
+
+#### Price range
+
+In a range-based prediction, the API Owner defines a minimum and maximum stake amount.
+
+Users can then choose how much they want to contribute within that range when placing a vote.
+
+Because rewards are distributed proportionally, users who contribute larger stakes receive a larger share of the reward pool if their selected outcome wins.
+
+This model introduces more flexibility and allows users to adjust their exposure and potential reward size based on their confidence in the outcome.
+
+### Pool mechanics and reward distribution
+
+All user stakes are temporarily held within the prediction pool while the market remains active.
+
+Funds are not immediately distributed after participation. Instead, they remain locked within the smart contract infrastructure until the prediction is resolved.
+
+**After resolution:**
+
+- platform fees are automatically deducted;
+
+- the losing side’s pool is redistributed to winning participants;
+- payouts are calculated proportionally based on each user’s contribution.
+
+All calculations and transfers are processed automatically on-chain through Solana smart contracts, ensuring transparent and verifiable reward distribution.

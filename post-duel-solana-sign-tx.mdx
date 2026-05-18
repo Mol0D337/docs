@@ -1,0 +1,86 @@
+---
+title: "POST /duel/solana/sign-tx"
+---
+
+Creates and signs a transaction for initializing an application-based crypto prediction. Returns a signed transaction that can be submitted to the blockchain.
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Authorization | yes | Authorization Bearer token |
+
+### **Request**
+
+Prediction join request.
+
+**Type:** object. **Request content type:** application / json . Body:
+
+```text
+{
+  "answer": 0,
+  "commission_rate": 0,
+  "deadline": "string",
+  "duel_info": {
+    "additionalProp1": "string",
+    "additionalProp2": "string",
+    "additionalProp3": "string"
+  },
+  "duel_price": 0,
+  "is_owner_resolving": true,
+  "logo_url": "string",
+  "max_price": 0,
+  "min_price": 0,
+  "price_type": "string",
+  "question": "string",
+  "source_of_truth": "string",
+  "symbol": "string"
+}
+```
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Signed transaction returned successfully.
+
+```text
+{
+  "tx": "string"
+}
+```
+
+#### Code 400
+
+Invalid request data.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 401
+
+Unauthorized - Invalid or missing claims.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

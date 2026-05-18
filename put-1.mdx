@@ -1,0 +1,85 @@
+---
+title: "PUT /admin/duel/cancel"
+---
+
+Cancels a crypto prediction and initiates refunds to all participants. The action is recorded in the audit log.
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Bearer<br />\<refresh\_token\> | yes | Authorization<br />Bearer token |
+
+### **Request**
+
+Prediction cancel request.
+
+**Type:** object. **Request content type:** application / json . Body:
+
+```text
+{
+  "cancellation_reason": "string",
+  "duel_id": "string",
+  "status": 0
+}
+```
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Refund transaction hashes.
+
+```text
+{
+  "tx_hashes": [
+    "string"
+  ]
+}
+```
+
+#### Code 400
+
+Invalid request data.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 401
+
+Unauthorized.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 403
+
+Admin permission required.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

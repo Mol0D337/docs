@@ -1,0 +1,112 @@
+---
+title: "GET /duel/{id}"
+---
+
+Retrieve a prediction by its ID for the authenticated user. Returns the prediction details and the list of players. Requires authentication.
+
+### **Parameters**
+
+| Name | Type | Header | Path | Required | Description |
+| :-- | :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Authorization | — | yes | Authorization<br />Bearer token |
+| id | string | — | id | yes | Prediction ID |
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Prediction details.
+
+```text
+{
+  "approved_by": "string",
+  "cancellation_reason": "string",
+  "commission": 0,
+  "commission_rate": 0,
+  "created_at": "string",
+  "deadline": "string",
+  "duel_info": {
+    "additionalProp1": "string",
+    "additionalProp2": "string",
+    "additionalProp3": "string"
+  },
+  "duel_price": 0,
+  "final_result": 0,
+  "id": "string",
+  "is_owner_resolving": true,
+  "is_self_resolved": true,
+  "joined": true,
+  "logo_url": "string",
+  "max_price": 0,
+  "min_price": 0,
+  "no_count": 0,
+  "owner_id": "string",
+  "player_status": 0,
+  "players_count": 0,
+  "potential_win": 0,
+  "price_type": "string",
+  "project_id": "string",
+  "question": "string",
+  "refunded_players_count": 0,
+  "resolved_at": "string",
+  "resolved_by": "string",
+  "room_number": 0,
+  "room_token_pda": "string",
+  "slug": "string",
+  "source_of_truth": "string",
+  "status": 0,
+  "symbol": "string",
+  "updated_at": "string",
+  "usd_price": 0,
+  "win_amount": 0,
+  "winners_count": 0,
+  "yes_count": 0,
+  "your_answer": 0
+}
+```
+
+#### Code 400
+
+Invalid duel ID.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 401
+
+Authentication required or invalid token.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 404
+
+Duel not found.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

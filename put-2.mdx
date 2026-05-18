@@ -1,0 +1,85 @@
+---
+title: "PUT /admin/duel/edit"
+---
+
+Updates editable fields of an existing prediction (question, source of truth, logo URL, prediction info, deadline). The action is recorded in the audit log.
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Bearer<br />\<refresh\_token\> | yes | Authorization<br />Bearer token |
+
+### **Request**
+
+Prediction edit request.
+
+**Type:** object. **Request content type:** application / json . Body:
+
+```text
+{
+  "deadline": "string",
+  "duel_info": {
+    "additionalProp1": "string",
+    "additionalProp2": "string",
+    "additionalProp3": "string"
+  },
+  "duel_type": "string",
+  "id": "string",
+  "logo_url": "string",
+  "question": "string",
+  "source_of_truth": "string"
+}
+```
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Duel updated successfully.
+
+#### Code 400
+
+Invalid request data.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 401
+
+Unauthorized.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 403
+
+Admin permission required.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

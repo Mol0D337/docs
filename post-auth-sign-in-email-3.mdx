@@ -1,0 +1,50 @@
+---
+title: "POST /auth/refresh"
+---
+
+Refreshes the user's JWT tokens using the provided refresh token from the Authorization header. Returns a new pair of access and refresh tokens.
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Bearer<br />\<refresh\_token\> | yes | Authorization<br />Bearer token |
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Successfully refreshed tokens.
+
+```text
+{
+  "jwt_info": {
+    "access_token": "string",
+    "refresh_token": "string"
+  }
+}
+```
+
+#### Code 401
+
+Unauthorized - Invalid or expired refresh token.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

@@ -1,0 +1,234 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Duel Duck Prediction API",
+  "colors": {
+    "primary": "#FFC54D",
+    "light": "#A7A7A7",
+    "dark": "#151515"
+  },
+  "favicon": "/images/logo.png",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "icon": "files",
+        "pages": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket-launch",
+            "expanded": true,
+            "pages": [
+              "overview",
+              "duel-duck-prediction-api"
+            ]
+          },
+          "quickstart",
+          {
+            "group": "Core Concepts",
+            "icon": "brain-circuit",
+            "pages": [
+              "what-is-a-prediction",
+              "prediction-lifecycle",
+              "roles-in-the-system",
+              "outcomes-and-resolution",
+              "probability-and-pricing"
+            ]
+          },
+          {
+            "group": "User flows",
+            "icon": "network-wired",
+            "pages": [
+              "create-a-prediction",
+              "participate-in-a-prediction",
+              "resolve-a-prediction"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API reference",
+        "groups": [
+          {
+            "group": "Main API flows",
+            "pages": [
+              "project-creation",
+              "admin-prediction-creation-and-resolve",
+              "user-prediction-creation-and-self-resolve"
+            ],
+            "icon": "book-bookmark"
+          },
+          {
+            "group": "Endpoints",
+            "icon": "gear-complex-code",
+            "pages": [
+              {
+                "group": "Authentication",
+                "icon": "shield-check",
+                "pages": [
+                  "post-auth-sign-in-email-1",
+                  "post-auth-sign-in-email-3"
+                ]
+              },
+              {
+                "group": "Admin",
+                "icon": "user-shield",
+                "pages": [
+                  "post-2",
+                  "post-3",
+                  "put-1",
+                  "put-2",
+                  "put-3",
+                  "get-6"
+                ]
+              },
+              {
+                "group": "Predictions",
+                "icon": "block-question",
+                "pages": [
+                  "get-5",
+                  "get-2",
+                  "get-duel-history",
+                  "get-3",
+                  "get-4",
+                  "j",
+                  "put",
+                  "post",
+                  "post-duel-solana-join",
+                  "post-duel-solana",
+                  "post-duel-solana-sign-tx",
+                  "post-1",
+                  "get-duel",
+                  "get-duel-1",
+                  "get-duel-2"
+                ]
+              },
+              {
+                "group": "Tokens",
+                "icon": "coins",
+                "pages": [
+                  "auth-sign-in-wallet",
+                  "coins-mint-mint",
+                  "get-coins-solana-tokens",
+                  "get"
+                ]
+              },
+              {
+                "group": "Users",
+                "icon": "users",
+                "pages": [
+                  "user-me",
+                  "user",
+                  "get-1"
+                ]
+              }
+            ]
+          }
+        ],
+        "icon": "code"
+      }
+    ]
+  },
+  "logo": {
+    "light": "/images/Frame2118531342.svg",
+    "dark": "/images/Frame2118531342(1).svg",
+    "href": "https://duelduck.com/"
+  },
+  "navbar": {
+    "links": [
+      {
+        "href": "https://discord.com/invite/bDdTRheD2a",
+        "label": "Get help"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://dashboard.mintlify.com"
+    }
+  },
+  "contextual": {
+    "options": [
+     "copy",
+     "view",
+     "chatgpt",
+     "claude",
+     "perplexity",
+     "mcp",
+     "cursor",
+     "vscode"
+   ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/duel_duck",
+      "telegram": "https://t.me/duelduck",
+      "youtube": "https://www.youtube.com/@DuelDuck",
+      "discord": "https://discord.com/invite/bDdTRheD2a",
+      "website": "https://duelduck.com"
+    },
+    "links": [
+      {
+        "header": "Explore",
+        "items": [
+          {
+            "label": "Prediction API",
+            "href": "https://duelduck.com/api"
+          },
+          {
+            "label": "API dashboard",
+            "href": "https://duelduck.com/api"
+          }
+        ]
+      },
+      {
+        "header": "Legal & Rules ",
+        "items": [
+          {
+            "label": "Terms & Conditions",
+            "href": "https://duelduck.com/terms-and-conditions"
+          },
+          {
+            "label": "Prohibited prediction types",
+            "href": "https://duelduck.com/prohibited-duel-types"
+          },
+          {
+            "label": "Prediction resolution rules",
+            "href": "https://duelduck.com/resolve-rules"
+          }
+        ]
+      }
+    ]
+  },
+  "background": {
+    "color": {
+      "light": "#FFFFFF",
+      "dark": "#070707"
+    },
+    "decoration": "gradient"
+  },
+  "appearance": {
+    "default": "dark"
+  },
+  "fonts": {
+    "family": "Poppins",
+    "weight": 400
+  },
+  "styling": {
+    "codeblocks": "dark"
+  },
+  "interaction": {
+    "drilldown": true
+  },
+  "thumbnails": {
+    "appearance": "dark",
+    "background": "/images/Header-Desktop(1).png",
+    "fonts": {
+      "family": " Poppins"
+    }
+  },
+  "banner": {
+    "content": "123",
+    "dismissible": false
+  }
+}

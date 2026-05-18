@@ -1,0 +1,135 @@
+---
+title: "Project creation"
+---
+
+<Note>
+  In this document, the term Duel refers to a Prediction as it's used as the internal name on Duel Duck
+</Note>
+
+When you start using Duel Duck Prediction API, the first step is to create a project. A project represents your application, website, or platform where predictions will be hosted.
+
+Once the project is created, you receive an API key that will be displayed in your API dashboard. This key identifies your project and must be included in all future project-related API requests.
+
+**Who:** user with role `Partner` (role = 2).\
+**Result:** project created, `api_key` obtained for all subsequent project-scoped requests.
+
+### Step 1 — Request a verification code
+
+To sign in, request a verification code using your email address. The code will be sent to your inbox.
+
+<kbd>POST /auth/send-code</kbd>
+
+**Content-Type:** application/json
+
+```text
+{
+
+  "email": "partner@example.com"
+
+}
+```
+
+A verification code will be sent to the specified email.
+
+### Step 2 — Sign in and obtain a JWT
+
+Use the verification code to sign in and receive an access token. The access token is your authentication credential and is required for protected API endpoints.
+
+<kbd>POST /auth/sign-in-email</kbd>
+
+**Content-Type:** application/json
+
+```text
+{
+
+  "email": "partner@example.com",
+
+  "code": "123456"
+
+}
+```
+
+**Response:**
+
+```text
+json
+
+{
+
+  "user": { "id": "...", "role": 2, ... },
+
+  "jwt_info": {
+
+    "access_token": "<ACCESS_TOKEN>",
+
+    "refresh_token": "<REFRESH_TOKEN>"
+
+  }
+
+}
+```
+
+Save `access_token` — it is used as a Bearer token in the next request.
+
+### Step 3 — Create the project
+
+After signing in, create a new project by providing:
+
+- Project name,
+- Website URL.
+
+The response contains:
+
+- Project ID,
+- API key,
+- Project settings.
+
+<kbd>POST /me/projects</kbd>
+
+**Authorization:** Bearer \<ACCESS\_TOKEN\>
+
+**Content-Type:** application/json
+
+```text
+{
+
+  "name": "My Project",
+
+  "site_url": "https://mysite.com"
+
+}
+```
+
+**Response:**
+
+```text
+json
+
+{
+
+  "id": "<PROJECT_ID>",
+
+  "partner_id": "<USER_ID>",
+
+  "api_key": "<API_KEY>",
+
+  "name": "My Project",
+
+  "site_url": "https://mysite.com",
+
+  "status": 1,
+
+  "wallet_address": "...",
+
+  "is_users_duels_enabled": false,
+
+  "is_self_resolved_enabled": false,
+
+  "created_at": "..."
+
+}
+```
+
+The `api_key` is the most important value returned when creating a project. Include it in the `X-API-Key` header for all project-scoped requests.
+
+Without this header, the API will not know which project you are working with.

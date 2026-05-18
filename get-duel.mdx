@@ -1,0 +1,80 @@
+---
+title: "GET /duel/status-counts"
+---
+
+Returns the count of predictions grouped by status for the project identified by the API key. Excludes denied duels.
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| X-API-Key | string | X-API-Key | yes | Project API key |
+
+### **Request**
+
+Prediction join request.
+
+**Type:** object. **Request content type:** application / json . Body:
+
+```text
+{
+  "answer": 0,
+  "commission_rate": 0,
+  "deadline": "string",
+  "duel_info": {
+    "additionalProp1": "string",
+    "additionalProp2": "string",
+    "additionalProp3": "string"
+  },
+  "duel_price": 0,
+  "is_owner_resolving": true,
+  "logo_url": "string",
+  "max_price": 0,
+  "min_price": 0,
+  "price_type": "string",
+  "question": "string",
+  "source_of_truth": "string",
+  "symbol": "string"
+}
+```
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Prediction counts by status.
+
+```text
+{
+  "active": 0,
+  "denied": 0,
+  "refunded": 0,
+  "resolved": 0,
+  "unverified": 0,
+  "waiting_for_resolve": 0
+}
+```
+
+#### Code 401
+
+Invalid or missing API key.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

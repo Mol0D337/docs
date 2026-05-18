@@ -1,0 +1,90 @@
+---
+title: "POST /duel/solana/join"
+---
+
+Allows an authenticated user to join an existing app-based crypto prediction.
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Authorization | yes | Authorization Bearer token |
+
+### **Request**
+
+Prediction join request.
+
+**Type:** object. **Request content type:** application / json . Body:
+
+```text
+{
+  "duel": {
+    "answer": 0,
+    "duel_id": "string",
+    "external_source": "string",
+    "invited_by": "string",
+    "paid_price": 0
+  },
+  "tx_hash": "string"
+}
+```
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Joined the prediction successfully.
+
+```text
+{
+  "player": {
+    "answer": 0,
+    "created_at": "string",
+    "duel_id": "string",
+    "final_status": 0,
+    "id": "string",
+    "is_winner": true,
+    "paid_price": 0,
+    "user_id": "string",
+    "win_amount": 0
+  },
+  "result": {
+    "tx_hash": "string"
+  }
+}
+```
+
+#### Code 400
+
+Invalid request data.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 401
+
+Unauthorized - Invalid or missing claims.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

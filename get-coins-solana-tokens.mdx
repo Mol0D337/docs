@@ -1,0 +1,61 @@
+---
+title: "GET /coins/solana-tokens"
+---
+
+Search Solana tokens by symbol or name (query params). Returns list of matching tokens.
+
+### Parameters
+
+**Default value for limit:** 20
+
+| Name | Type | Query | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| search | string | search | yes | Search string (symbol or name) |
+| limit | integer | 20 | no | Max results to return |
+
+### Responses
+
+**Response content type:** application / json .
+
+#### Code 200
+
+List of matching tokens.
+
+```text
+[
+  {
+    "decimals": 0,
+    "image_url": "string",
+    "is_verified": true,
+    "market_cap": 0,
+    "mint": "string",
+    "name": "string",
+    "program_id": "string",
+    "symbol": "string",
+    "updated_at": "string",
+    "usd_price": 0
+  }
+]
+```
+
+#### Code 400
+
+Invalid request params.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

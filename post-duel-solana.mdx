@@ -1,0 +1,74 @@
+---
+title: "POST /duel/solana/join/sign-tx"
+---
+
+Creates a signed transaction that allows a user to join an app-based crypto prediction.
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Authorization | yes | Authorization Bearer token |
+
+### **Request**
+
+Prediction join request.
+
+**Type:** object. **Request content type:** application / json . Body:
+
+```text
+{
+  "answer": 0,
+  "duel_id": "string",
+  "external_source": "string",
+  "invited_by": "string",
+  "paid_price": 0
+}
+```
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Signed transaction returned successfully.
+
+```text
+{
+  "tx": "string"
+}
+```
+
+#### Code 400
+
+Invalid request data.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 401
+
+Unauthorized - Invalid or missing claims.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

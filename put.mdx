@@ -1,0 +1,111 @@
+---
+title: "PUT /duel/self-resolve"
+---
+
+Allows the prediction owner to resolve an owner-resolving crypto prediction. Returns resulting transaction hashes.
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Authorization | yes | Authorization Bearer token |
+
+### **Request**
+
+Prediction resolve request.
+
+**Type:** object. **Request content type:** application / json . Body:
+
+```text
+{
+  "answer": 0,
+  "duel_id": "string"
+}
+```
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Transaction hashes and prediction.
+
+```text
+{
+  "duel": {
+    "approved_by": "string",
+    "cancellation_reason": "string",
+    "commission": 0,
+    "commission_rate": 0,
+    "created_at": "string",
+    "deadline": "string",
+    "duel_info": {
+      "additionalProp1": "string",
+      "additionalProp2": "string",
+      "additionalProp3": "string"
+    },
+    "duel_price": 0,
+    "final_result": 0,
+    "id": "string",
+    "is_owner_resolving": true,
+    "is_self_resolved": true,
+    "logo_url": "string",
+    "max_price": 0,
+    "min_price": 0,
+    "owner_id": "string",
+    "players_count": 0,
+    "price_type": "string",
+    "project_id": "string",
+    "question": "string",
+    "refunded_players_count": 0,
+    "resolved_at": "string",
+    "resolved_by": "string",
+    "room_number": 0,
+    "room_token_pda": "string",
+    "slug": "string",
+    "source_of_truth": "string",
+    "status": 0,
+    "symbol": "string",
+    "updated_at": "string",
+    "usd_price": 0,
+    "winners_count": 0
+  },
+  "tx_hashes": [
+    "string"
+  ]
+}
+```
+
+#### Code 400
+
+Invalid request data.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 401
+
+Unauthorized - Invalid or missing claims.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

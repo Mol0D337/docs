@@ -1,0 +1,53 @@
+---
+title: "Prediction lifecycle"
+---
+
+Each prediction follows a structured lifecycle from creation to final reward distribution.
+
+### 1. Prediction creation
+
+The prediction is created by the API owner through the Duel Duck API dashboard. During creation, the prediction configuration is defined, including:
+
+- question;
+- deadline;
+- currency;
+- pricing model;
+- fee settings;
+- image and metadata.
+
+Once published, the prediction becomes available to users on the platform.
+
+### 2. User participation
+
+Users participate by connecting their crypto wallets and selecting either Yes or No.
+
+Depending on the prediction configuration:
+
+- users either pay a fixed amount per vote;
+- or choose their own stake within a predefined range.
+
+When a vote is submitted, the transaction is processed on-chain through the smart contract. User funds are temporarily allocated within the prediction pool until the prediction is resolved.
+
+### 3. Voting close
+
+After the deadline is reached, voting is automatically closed and no additional participation is allowed.
+
+At this stage, the total liquidity and vote distribution remain locked until the final outcome is resolved.
+
+### 4. Prediction resolution
+
+Once the real-world event occurs, the prediction is resolved with the correct outcome — Yes or No.
+
+The resolution process determines which side won and triggers the settlement process through the smart contract infrastructure.
+
+### 5. Reward distribution
+
+After resolution:
+
+- platform fees are automatically deducted according to the configured commission settings;
+
+- winning users receive their original stake back;
+
+- additional rewards are distributed from the losing side’s pool.
+
+All payouts are processed automatically on-chain without manual fund distribution.

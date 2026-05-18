@@ -1,0 +1,118 @@
+---
+title: "GET /duel/participating"
+---
+
+Get all predictions where the authenticated user is a participant, with optional filtering, sorting and pagination.
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Authorization | yes | Authorization<br />Bearer token |
+
+`opts.pagination.page_size` , default value : 10\
+`opts.pagination.page_num` , default value : 1\
+`opts.order.order_by` , default value : created\_at\
+`opts.order.order_type` , available values : desc, asc ; default value : ""
+
+| Name | Type | Query | Description |
+| :-- | :-- | :-- | :-- |
+| opts.pagination.page\_size | integer(\$int64) | 10 | Number of items<br />per page |
+| opts.pagination.page\_num | integer(\$int64) | 1 | Page number<br />(starting from 1) |
+| opts.order.order\_by | string | created\_at | Field to order by |
+| opts.order.order\_type | string | desc / asc | Order type |
+| opts.filters\[0\].column | string | opts.filters\[0\].column | First filter<br />column name |
+| opts.filters\[0\].operator | string | opts.filters\[0\].operator | First filter operator |
+| opts.filters\[0\].value | string | opts.filters\[0\].value | First filter value |
+| opts.filters\[0\].where\_or | boolean | — | First filter<br />OR condition |
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+List of predictions.
+
+```text
+[
+  {
+    "approved_by": "string",
+    "cancellation_reason": "string",
+    "commission": 0,
+    "commission_rate": 0,
+    "created_at": "string",
+    "deadline": "string",
+    "duel_info": {
+      "additionalProp1": "string",
+      "additionalProp2": "string",
+      "additionalProp3": "string"
+    },
+    "duel_price": 0,
+    "final_result": 0,
+    "id": "string",
+    "is_owner_resolving": true,
+    "is_self_resolved": true,
+    "joined": true,
+    "logo_url": "string",
+    "max_price": 0,
+    "min_price": 0,
+    "no_count": 0,
+    "owner_id": "string",
+    "player_status": 0,
+    "players_count": 0,
+    "potential_win": 0,
+    "price_type": "string",
+    "project_id": "string",
+    "question": "string",
+    "refunded_players_count": 0,
+    "resolved_at": "string",
+    "resolved_by": "string",
+    "room_number": 0,
+    "room_token_pda": "string",
+    "slug": "string",
+    "source_of_truth": "string",
+    "status": 0,
+    "symbol": "string",
+    "updated_at": "string",
+    "usd_price": 0,
+    "win_amount": 0,
+    "winners_count": 0,
+    "yes_count": 0,
+    "your_answer": 0
+  }
+]
+```
+
+#### Code 400
+
+Bad request.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 401
+
+Unauthorized - Invalid or missing claims.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

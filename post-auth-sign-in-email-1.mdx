@@ -1,0 +1,101 @@
+---
+title: "POST /auth/sign-in-wallet"
+---
+
+Authenticates a user using a connected crypto wallet (e.g., Solana Phantom). Accepts wallet-related data and returns user data with JWT tokens.
+
+### **Request**
+
+Wallet sign in request.
+
+**Type:** object. **Request content type:** application / json . Body:
+
+```text
+{
+  "address": "string",
+  "project_id": "string",
+  "secret": "string"
+}
+```
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Successfully authenticated.
+
+```text
+{
+  "jwt_info": {
+    "access_token": "string",
+    "refresh_token": "string"
+  },
+  "user": {
+    "created_at": "string",
+    "email": "string",
+    "id": "string",
+    "is_active": true,
+    "project_id": "string",
+    "role": 0,
+    "updated_at": "string",
+    "wallet_address": "string"
+  }
+}
+```
+
+#### Code 400
+
+Invalid request data.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 401
+
+Unauthorized - Invalid wallet signature or data.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 403
+
+Forbidden - Bot detected - verification failed.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 404
+
+User not found.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

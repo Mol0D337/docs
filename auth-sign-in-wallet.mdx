@@ -1,0 +1,67 @@
+---
+title: "GET /coins/mint/{mint}"
+---
+
+Retrieve Solana token information by searching for tokens with the specified mint address.
+
+### **Parameters**
+
+| Name | Type | Path | Required | Description |
+| --- | --- | --- | --- | --- |
+| mint | string | mint | yes | Mint address to search for |
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Token information retrieved successfully.
+
+```text
+{
+  "decimals": 0,
+  "image_url": "string",
+  "is_verified": true,
+  "market_cap": 0,
+  "mint": "string",
+  "name": "string",
+  "program_id": "string",
+  "symbol": "string",
+  "updated_at": "string",
+  "usd_price": 0
+}
+```
+
+#### Code 400
+
+Invalid request data or invalid mint address format.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 404
+
+Token with provided mint address not found.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error during token retrieval.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

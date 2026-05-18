@@ -1,0 +1,55 @@
+---
+title: "GET /user/me"
+---
+
+Returns the profile of the currently authenticated user.
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Authorization | yes | Authorization Bearer token |
+| X-API-Key | string | X-API-Key | yes | Project API key |
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Current user profile.
+
+```text
+{
+  "created_at": "string",
+  "email": "string",
+  "id": "string",
+  "is_active": true,
+  "project_id": "string",
+  "role": 0,
+  "updated_at": "string",
+  "wallet_address": "string"
+}
+```
+
+#### Code 401
+
+Unauthorized.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

@@ -1,0 +1,110 @@
+---
+title: "GET /duel/token-accounts"
+---
+
+Retrieves the balances of all token accounts associated with the user's public blockchain address. Requires authentication. Supports filtering and pagination via query parameters.
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Authorization | yes | Authorization<br />Bearer token |
+
+`type` , default value : "token" (e.g. SPL etc.)\
+`page_number` , default value : 1\
+`page_size` , default value : 20
+
+| Name | Type | Query | Description |
+| :-- | :-- | :-- | :-- |
+| type | string | "token" | Type of token account to filter |
+| page\_number | integer | 1 | Page number for pagination<br />(starts from 1) |
+| page\_size | integer | 20 | Number of token<br />accounts per page |
+| hide\_zero | boolean | — | Hide token accounts<br />with zero balance |
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+Token account balances retrieved successfully.
+
+```text
+{
+  "data": [
+    {
+      "amount": 0,
+      "owner": "string",
+      "token_account": "string",
+      "token_address": "string",
+      "token_decimals": 0
+    }
+  ],
+  "metadata": {
+    "tokens": {
+      "additionalProp1": {
+        "token_address": "string",
+        "token_icon": "string",
+        "token_name": "string",
+        "token_symbol": "string"
+      },
+      "additionalProp2": {
+        "token_address": "string",
+        "token_icon": "string",
+        "token_name": "string",
+        "token_symbol": "string"
+      },
+      "additionalProp3": {
+        "token_address": "string",
+        "token_icon": "string",
+        "token_name": "string",
+        "token_symbol": "string"
+      }
+    }
+  }
+}
+```
+
+#### Code 400
+
+Invalid request data or query parameters.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 401
+
+Authentication required or invalid token.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 503
+
+External service unavailable.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

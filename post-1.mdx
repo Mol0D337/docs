@@ -1,0 +1,72 @@
+---
+title: "POST /duel/upload-image"
+---
+
+Uploads and processes a prediction logo image (JPEG, PNG, SVG, WebP; max 3 MB). Returns the URL of the saved logo.
+
+### **Parameters**
+
+| Name | Type | Header | formData | Required | Description |
+| :-- | :-- | :-- | --- | :-- | :-- |
+| Authorization | string | Authorization | — | yes | Authorization<br />Bearer token |
+| **duel\_logo** | file | — | Choose File /<br />No file chosen | yes | Prediction logo<br />image |
+
+### **Responses**
+
+**Response content type:** application / json .
+
+#### Code 200
+
+duel\_logo\_url.
+
+```text
+{
+  "additionalProp1": "string",
+  "additionalProp2": "string",
+  "additionalProp3": "string"
+}
+```
+
+#### Code 400
+
+Invalid request data.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 401
+
+Unauthorized.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 429
+
+Too many uploads.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 500
+
+Internal server error.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```

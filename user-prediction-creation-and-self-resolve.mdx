@@ -1,0 +1,205 @@
+---
+title: "User prediction creation and self-resolve"
+---
+
+<Note>
+  In this document, the term Duel refers to a Prediction as it's used as the internal name on Duel Duck
+</Note>
+
+This flow allows regular users to create their own predictions and resolve them after the deadline. Before this feature can be used, the project owner must enable user-created predictions and self-resolution through the API dashboard.
+
+**Who:** partner enables the feature; regular users create and resolve their own duels.  \
+**Result:** duel created by a user, other participants voted, the duel owner set the final result.
+
+### Step 1 — Partner enables user duels and self-resolve
+
+The partner updates project permissions to enable:
+
+- user-created predictions,
+- self-resolution.
+
+Both options must be enabled for users to fully manage their own predictions.
+
+<kbd>PUT /me/projects/\<PROJECT\_ID\>/permissions</kbd>
+
+**Authorization:** Bearer \<PARTNER\_ACCESS\_TOKEN\>
+
+**Content-Type:** application/json
+
+```text
+{
+
+  "is_users_duels_enabled": true,
+
+  "is_self_resolved_enabled": true
+
+}
+```
+
+`is_self_resolved_enabled: true` only takes effect when `is_users_duels_enabled: true`. Without this step users cannot create duels.
+
+### Step 2 — User signs in with a wallet
+
+Users authenticate with their wallet. The project API key (`X-API-Key`) must be included so the system knows which project the user belongs to.
+
+<kbd>POST /auth/sign-in-wallet</kbd>
+
+**X-API-Key:** \<API\_KEY\>
+
+**Content-Type:** application/json
+
+```text
+{
+
+  "address": "<SOLANA_WALLET_ADDRESS>",
+
+  "secret": "<SIGNED_MESSAGE>"
+
+}
+```
+
+**Response** is identical to email sign-in: `jwt_info.access_token`.
+
+### Step 3 — User creates a duel
+
+Users create predictions through a blockchain transaction. Creating a duel is a three-step process: get the transaction → submit to blockchain → confirm.
+
+#### **3.1 Get the signed transaction**
+
+<kbd>POST /duel/solana/sign-tx</kbd>
+
+**Authorization:** Bearer \<USER\_ACCESS\_TOKEN\>
+
+**X-API-Key:** \<API\_KEY\>
+
+**Content-Type:** application/json
+
+```text
+{
+
+  "symbol": "SOL",
+
+  "question": "Will SOL exceed $200 by end of week?",
+
+  "source_of_truth": "https://coinmarketcap.com/currencies/solana/",
+
+  "logo_url": "https://example.com/logo.png",
+
+  "duel_price": 0.5,
+
+  "price_type": "fixed",
+
+  "commission_rate": 5,
+
+  "is_owner_resolving": true,
+
+  "deadline": "2026-05-16T18:00:00Z",
+
+  "duel_info": {}
+
+}
+```
+
+\> `is_owner_resolving: true` is required for self-resolve to work.
+
+**Response:** `{ "tx": "<BASE64_TRANSACTION>" }`
+
+#### **3.2** The user signs and submits the transaction to Solana, obtaining a `tx_hash`.
+
+#### **3.3 Confirm duel creation**
+
+<kbd>POST /duel/solana</kbd>
+
+**Authorization:** Bearer \<USER\_ACCESS\_TOKEN\>
+
+**X-API-Key:** \<API\_KEY\>
+
+**Content-Type:** application/json
+
+```text
+{
+
+  "duel": {
+
+    "symbol": "SOL",
+
+    "question": "Will SOL exceed $200 by end of week?",
+
+    "source_of_truth": "https://coinmarketcap.com/currencies/solana/",
+
+    "logo_url": "https://example.com/logo.png",
+
+    "duel_price": 0.5,
+
+    "price_type": "fixed",
+
+    "commission_rate": 5,
+
+    "is_owner_resolving": true,
+
+    "deadline": "2026-05-16T18:00:00Z",
+
+    "duel_info": {}
+
+  },
+
+  "tx_hash": "<TX_HASH>"
+
+}
+```
+
+**Response:**
+
+```text
+json
+
+{
+
+  "duel": { "id": "<DUEL_ID>", "status": 2, "is_owner_resolving": true, ... },
+
+  "result": { "tx_hash": "<TX_HASH>" }
+
+}
+```
+
+### Step 4 — Other users join the duel
+
+Other users join the prediction using the same blockchain transaction flow used in admin-created predictions.
+
+### Step 5 — Duel owner resolves the duel
+
+After the deadline, the prediction creator submits the final outcome. Only the original creator can perform this action.
+
+<kbd>PUT /duel/self-resolve</kbd>
+
+**Authorization:** Bearer \<OWNER\_ACCESS\_TOKEN\>
+
+**X-API-Key:** \<API\_KEY\>
+
+**Content-Type:** application/json
+
+```text
+{
+
+  "duel_id": "<DUEL_ID>",
+
+  "answer": 2
+
+}
+```
+
+\> Only the duel creator can call this endpoint. Any other user will receive an error.
+
+**Response:**
+
+```text
+json
+
+{
+
+  "tx_hashes": ["<TX_HASH_1>", "<TX_HASH_2>"],
+
+  "duel": { "id": "<DUEL_ID>", "status": 4, "final_result": 2, ... }
+
+}
+```

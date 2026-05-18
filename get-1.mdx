@@ -1,0 +1,65 @@
+---
+title: "GET /me/projects"
+---
+
+Returns all projects belonging to the authenticated partner.
+
+### **Parameters**
+
+| Name | Type | Header | Required | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| Authorization | string | Authorization | yes | Authorization Bearer token |
+
+### **Responses**
+
+#### Code 200
+
+Partner projects.
+
+```text
+[
+  {
+    "api_key": "string",
+    "created_at": "string",
+    "id": "string",
+    "is_self_resolved_enabled": true,
+    "is_users_duels_enabled": true,
+    "name": "string",
+    "partner_id": "string",
+    "site_url": "string",
+    "status": 1,
+    "status_history": [
+      {
+        "changed_at": "string",
+        "id": 0,
+        "project_id": "string",
+        "status": 1
+      }
+    ],
+    "updated_at": "string",
+    "wallet_address": "string"
+  }
+]
+```
+
+#### Code 401
+
+Unauthorized.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 403
+
+Partner permission required.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
