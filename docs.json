@@ -140,12 +140,7 @@
         "href": "https://discord.com/invite/bDdTRheD2a",
         "label": "Get help"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
+    ]
   },
   "contextual": {
     "options": [
@@ -226,9 +221,5 @@
     "fonts": {
       "family": " Poppins"
     }
-  },
-  "banner": {
-    "content": "123",
-    "dismissible": false
   }
 }
