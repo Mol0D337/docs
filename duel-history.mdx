@@ -1,10 +1,10 @@
 ---
-title: "GET /duel/my"
+title: "GET /duel/history"
 ---
 
-**URL:** https://xapi.duelduck.com/duel/my
+**URL:** [https://xapi.duelduck.com/duel/history](https://xapi.duelduck.com/duel/history)
 
-Retrieves a paginated list of predictions created by or assigned to the authenticated user. Supports advanced filtering, ordering, and pagination via query parameters.
+Retrieves the authenticated user's prediction history with optional filtering, sorting, and pagination.
 
 ### **Parameters**
 
@@ -34,7 +34,7 @@ Retrieves a paginated list of predictions created by or assigned to the authenti
 
 #### Code 200
 
-List of predictions belonging to the authenticated user.
+List of user's historical predictions.
 
 ```text
 [

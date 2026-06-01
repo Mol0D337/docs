@@ -1,10 +1,10 @@
 ---
-title: "PUT /admin/duel/cancel"
+title: "PUT /admin/duel/edit"
 ---
 
-**URL:** https://xapi.duelduck.com/admin/duel/cancel
+**URL:** [https://xapi.duelduck.com/admin/duel/edit](https://xapi.duelduck.com/admin/duel/edit)
 
-Cancels a crypto prediction and initiates refunds to all participants. The action is recorded in the audit log.
+Updates editable fields of an existing prediction (question, source of truth, logo URL, prediction info, deadline). The action is recorded in the audit log.
 
 ### **Parameters**
 
@@ -14,15 +14,23 @@ Cancels a crypto prediction and initiates refunds to all participants. The actio
 
 ### **Request**
 
-Prediction cancel request.
+Prediction edit request.
 
 **Type:** object. **Request content type:** application / json . Body:
 
 ```text
 {
-  "cancellation_reason": "string",
-  "duel_id": "string",
-  "status": 0
+  "deadline": "string",
+  "duel_info": {
+    "additionalProp1": "string",
+    "additionalProp2": "string",
+    "additionalProp3": "string"
+  },
+  "duel_type": "string",
+  "id": "string",
+  "logo_url": "string",
+  "question": "string",
+  "source_of_truth": "string"
 }
 ```
 
@@ -32,15 +40,7 @@ Prediction cancel request.
 
 #### Code 200
 
-Refund transaction hashes.
-
-```text
-{
-  "tx_hashes": [
-    "string"
-  ]
-}
-```
+Duel updated successfully.
 
 #### Code 400
 

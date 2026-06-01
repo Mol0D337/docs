@@ -1,16 +1,28 @@
 ---
-title: "GET /duel/public/{id}"
+title: "PUT /admin/duel/approve"
 ---
 
-**URL:** https://xapi.duelduck.com/duel/public/{id}
+**URL:** [https://xapi.duelduck.com/admin/duel/approve](https://xapi.duelduck.com/admin/duel/approve)
 
-Retrieve a prediction by its ID without requiring authentication. Returns the prediction details if found.
+Approves a pending crypto prediction, making it visible and open for participants. The action is recorded in the audit log.
 
 ### **Parameters**
 
-| Name | Type | Path | Required | Description |
+| Name | Type | Header | Required | Description |
 | :-- | :-- | :-- | :-- | :-- |
-| id | string | id | yes | Prediction ID |
+| Authorization | string | Bearer<br />\<refresh\_token\> | yes | Authorization<br />Bearer token |
+
+### **Request**
+
+Prediction approve request.
+
+**Type:** object. **Request content type:** application / json . Body:
+
+```text
+{
+  "duel_id": "string"
+}
+```
 
 ### **Responses**
 
@@ -18,7 +30,7 @@ Retrieve a prediction by its ID without requiring authentication. Returns the pr
 
 #### Code 200
 
-Prediction details.
+Approved prediction.
 
 ```text
 {
@@ -63,7 +75,7 @@ Prediction details.
 
 #### Code 400
 
-Invalid prediction ID.
+Invalid request data.
 
 ```text
 {
@@ -72,9 +84,20 @@ Invalid prediction ID.
 }
 ```
 
-#### Code 404
+#### Code 401
 
-Prediction not found.
+Unauthorized.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 403
+
+Admin permission required.
 
 ```text
 {

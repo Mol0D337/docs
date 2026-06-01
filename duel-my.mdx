@@ -1,15 +1,15 @@
 ---
-title: "GET /duel/all-with-joined"
+title: "GET /duel/my"
 ---
 
-**URL:** https://xapi.duelduck.com/duel/all-with-joined
+**URL:** [https://xapi.duelduck.com/duel/my](https://xapi.duelduck.com/duel/my)
 
-Retrieves all predictions and for each prediction, indicates if the authenticated user is a participant. Supports optional filtering, sorting, and pagination.
+Retrieves a paginated list of predictions created by or assigned to the authenticated user. Supports advanced filtering, ordering, and pagination via query parameters.
 
 ### **Parameters**
 
 | Name | Type | Header | Required | Description |
-| --- | --- | --- | --- | --- |
+| :-- | :-- | :-- | :-- | :-- |
 | Authorization | string | Authorization | yes | Authorization<br />Bearer token |
 
 `opts.pagination.page_size` , default value : 10\
@@ -34,7 +34,7 @@ Retrieves all predictions and for each prediction, indicates if the authenticate
 
 #### Code 200
 
-List of predictions with participation status.
+List of predictions belonging to the authenticated user.
 
 ```text
 [
@@ -88,7 +88,7 @@ List of predictions with participation status.
 
 #### Code 400
 
-Bad request.
+Invalid request parameters.
 
 ```text
 {
@@ -99,7 +99,7 @@ Bad request.
 
 #### Code 401
 
-Unauthorized - Invalid or missing claims.
+Authentication required or invalid token.
 
 ```text
 {

@@ -66,51 +66,51 @@
                 "group": "Authentication",
                 "icon": "shield-check",
                 "pages": [
-                  "post-auth-sign-in-email-1",
-                  "post-auth-sign-in-email-3"
+                  "sign-in-wallet",
+                  "refresh"
                 ]
               },
               {
                 "group": "Admin",
                 "icon": "user-shield",
                 "pages": [
-                  "post-2",
-                  "post-3",
-                  "put-1",
-                  "put-2",
-                  "put-3",
-                  "get-6"
+                  "admin-duel",
+                  "admin-duel-approve",
+                  "admin-duel-cancel",
+                  "admin-duel-edit",
+                  "admin-duel-resolve",
+                  "admin-duel-upload-image"
                 ]
               },
               {
                 "group": "Predictions",
                 "icon": "block-question",
                 "pages": [
-                  "get-5",
-                  "get-2",
-                  "get-duel-history",
-                  "get-3",
-                  "get-4",
-                  "j",
-                  "put",
-                  "post",
-                  "post-duel-solana-join",
-                  "post-duel-solana",
-                  "post-duel-solana-sign-tx",
-                  "post-1",
-                  "get-duel",
-                  "get-duel-1",
-                  "get-duel-2"
+                  "duel-all",
+                  "duel-all-with-joined",
+                  "duel-history",
+                  "duel-my",
+                  "duel-participating",
+                  "duel-public",
+                  "duel-self-resolve",
+                  "duel-solana",
+                  "duel-solana-join",
+                  "duel-solana-join-sign-tx",
+                  "duel-solana-sign-tx",
+                  "duel-upload-image",
+                  "duel-status-counts",
+                  "duel-token-accounts",
+                  "duel-id"
                 ]
               },
               {
                 "group": "Tokens",
                 "icon": "coins",
                 "pages": [
-                  "auth-sign-in-wallet",
-                  "coins-mint-mint",
-                  "get-coins-solana-tokens",
-                  "get"
+                  "coins-mint",
+                  "coins-name",
+                  "coins-solana-tokens",
+                  "coins-solana-tokens-price"
                 ]
               },
               {
@@ -118,8 +118,8 @@
                 "icon": "users",
                 "pages": [
                   "user-me",
-                  "user",
-                  "get-1"
+                  "user-me-financial-history",
+                  "me-projects"
                 ]
               }
             ]

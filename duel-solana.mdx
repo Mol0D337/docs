@@ -1,10 +1,10 @@
 ---
-title: "PUT /duel/self-resolve"
+title: "POST /duel/solana"
 ---
 
-**URL:** https://xapi.duelduck.com/duel/self-resolve
+**URL:** [https://xapi.duelduck.com/duel/solana](https://xapi.duelduck.com/duel/solana)
 
-Allows the prediction owner to resolve an owner-resolving crypto prediction. Returns resulting transaction hashes.
+Creates an application-based crypto prediction using the provided data. Requires authentication.
 
 ### **Parameters**
 
@@ -14,14 +14,32 @@ Allows the prediction owner to resolve an owner-resolving crypto prediction. Ret
 
 ### **Request**
 
-Prediction resolve request.
+Prediction creation request.
 
 **Type:** object. **Request content type:** application / json . Body:
 
 ```text
 {
-  "answer": 0,
-  "duel_id": "string"
+  "duel": {
+    "answer": 0,
+    "commission_rate": 0,
+    "deadline": "string",
+    "duel_info": {
+      "additionalProp1": "string",
+      "additionalProp2": "string",
+      "additionalProp3": "string"
+    },
+    "duel_price": 0,
+    "is_owner_resolving": true,
+    "logo_url": "string",
+    "max_price": 0,
+    "min_price": 0,
+    "price_type": "string",
+    "question": "string",
+    "source_of_truth": "string",
+    "symbol": "string"
+  },
+  "tx_hash": "string"
 }
 ```
 
@@ -31,7 +49,7 @@ Prediction resolve request.
 
 #### Code 200
 
-Transaction hashes and prediction.
+Prediction created successfully.
 
 ```text
 {
@@ -73,9 +91,9 @@ Transaction hashes and prediction.
     "usd_price": 0,
     "winners_count": 0
   },
-  "tx_hashes": [
-    "string"
-  ]
+  "result": {
+    "tx_hash": "string"
+  }
 }
 ```
 

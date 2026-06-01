@@ -1,45 +1,27 @@
 ---
-title: "POST /duel/solana"
+title: "PUT /admin/duel/resolve"
 ---
 
-**URL:** https://xapi.duelduck.com/duel/solana
+**URL:** [https://xapi.duelduck.com/admin/duel/resolve](https://xapi.duelduck.com/admin/duel/resolve)
 
-Creates an application-based crypto prediction using the provided data. Requires authentication.
+Resolves a crypto prediction by setting the winning answer and distributing rewards to winners. The action is recorded in the audit log.
 
 ### **Parameters**
 
 | Name | Type | Header | Required | Description |
 | :-- | :-- | :-- | :-- | :-- |
-| Authorization | string | Authorization | yes | Authorization Bearer token |
+| Authorization | string | Bearer<br />\<refresh\_token\> | yes | Authorization<br />Bearer token |
 
 ### **Request**
 
-Prediction creation request.
+Prediction resolve request.
 
 **Type:** object. **Request content type:** application / json . Body:
 
 ```text
 {
-  "duel": {
-    "answer": 0,
-    "commission_rate": 0,
-    "deadline": "string",
-    "duel_info": {
-      "additionalProp1": "string",
-      "additionalProp2": "string",
-      "additionalProp3": "string"
-    },
-    "duel_price": 0,
-    "is_owner_resolving": true,
-    "logo_url": "string",
-    "max_price": 0,
-    "min_price": 0,
-    "price_type": "string",
-    "question": "string",
-    "source_of_truth": "string",
-    "symbol": "string"
-  },
-  "tx_hash": "string"
+  "answer": 0,
+  "duel_id": "string"
 }
 ```
 
@@ -49,7 +31,7 @@ Prediction creation request.
 
 #### Code 200
 
-Prediction created successfully.
+Transaction hashes and resolved prediction.
 
 ```text
 {
@@ -91,9 +73,9 @@ Prediction created successfully.
     "usd_price": 0,
     "winners_count": 0
   },
-  "result": {
-    "tx_hash": "string"
-  }
+  "tx_hashes": [
+    "string"
+  ]
 }
 ```
 
@@ -110,7 +92,18 @@ Invalid request data.
 
 #### Code 401
 
-Unauthorized - Invalid or missing claims.
+Unauthorized.
+
+```text
+{
+  "message": "string",
+  "status": 0
+}
+```
+
+#### Code 403
+
+Admin permission required.
 
 ```text
 {

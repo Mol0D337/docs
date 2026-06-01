@@ -1,16 +1,16 @@
 ---
-title: "PUT /admin/duel/resolve"
+title: "PUT /duel/self-resolve"
 ---
 
-**URL:** https://xapi.duelduck.com/admin/duel/resolve
+**URL:** [https://xapi.duelduck.com/duel/self-resolve](https://xapi.duelduck.com/duel/self-resolve)
 
-Resolves a crypto prediction by setting the winning answer and distributing rewards to winners. The action is recorded in the audit log.
+Allows the prediction owner to resolve an owner-resolving crypto prediction. Returns resulting transaction hashes.
 
 ### **Parameters**
 
 | Name | Type | Header | Required | Description |
 | :-- | :-- | :-- | :-- | :-- |
-| Authorization | string | Bearer<br />\<refresh\_token\> | yes | Authorization<br />Bearer token |
+| Authorization | string | Authorization | yes | Authorization Bearer token |
 
 ### **Request**
 
@@ -31,7 +31,7 @@ Prediction resolve request.
 
 #### Code 200
 
-Transaction hashes and resolved prediction.
+Transaction hashes and prediction.
 
 ```text
 {
@@ -92,18 +92,7 @@ Invalid request data.
 
 #### Code 401
 
-Unauthorized.
-
-```text
-{
-  "message": "string",
-  "status": 0
-}
-```
-
-#### Code 403
-
-Admin permission required.
+Unauthorized - Invalid or missing claims.
 
 ```text
 {
