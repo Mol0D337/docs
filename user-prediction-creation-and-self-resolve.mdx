@@ -22,6 +22,8 @@ Both options must be enabled for users to fully manage their own predictions.
 
 <kbd>PUT /me/projects/\<PROJECT\_ID\>/permissions</kbd>
 
+**URL:** https://xapi.duelduck.com/me/projects/\<PROJECT\_ID\>/permissions
+
 **Authorization:** Bearer \<PARTNER\_ACCESS\_TOKEN\>
 
 **Content-Type:** application/json
@@ -43,6 +45,8 @@ Both options must be enabled for users to fully manage their own predictions.
 Users authenticate with their wallet. The project API key (`X-API-Key`) must be included so the system knows which project the user belongs to.
 
 <kbd>POST /auth/sign-in-wallet</kbd>
+
+**URL:** https://xapi.duelduck.com/auth/sign-in-wallet
 
 **X-API-Key:** \<API\_KEY\>
 
@@ -67,6 +71,8 @@ Users create predictions through a blockchain transaction. Creating a duel is a 
 #### **3.1 Get the signed transaction**
 
 <kbd>POST /duel/solana/sign-tx</kbd>
+
+**URL:** https://xapi.duelduck.com/duel/solana/sign-tx
 
 **Authorization:** Bearer \<USER\_ACCESS\_TOKEN\>
 
@@ -109,6 +115,8 @@ Users create predictions through a blockchain transaction. Creating a duel is a 
 #### **3.3 Confirm duel creation**
 
 <kbd>POST /duel/solana</kbd>
+
+**URL:** https://xapi.duelduck.com/duel/solana
 
 **Authorization:** Bearer \<USER\_ACCESS\_TOKEN\>
 
@@ -171,6 +179,8 @@ Other users join the prediction using the same blockchain transaction flow used 
 After the deadline, the prediction creator submits the final outcome. Only the original creator can perform this action.
 
 <kbd>PUT /duel/self-resolve</kbd>
+
+**URL:** https://xapi.duelduck.com/duel/self-resolve
 
 **Authorization:** Bearer \<OWNER\_ACCESS\_TOKEN\>
 

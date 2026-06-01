@@ -36,6 +36,8 @@ A duel created via the admin endpoint is immediately set to **Active** status â€
 
 <kbd>POST /admin/duel</kbd>
 
+**URL:** https://xapi.duelduck.com/admin/duel
+
 **Authorization:** Bearer \<ACCESS\_TOKEN\>
 
 **X-API-Key:** \<API\_KEY\>
@@ -93,14 +95,14 @@ While the prediction is active and the deadline has not passed, users can join i
 This process has two parts:
 
 1. Request a prepared transaction from the API.
-
 2. Sign and submit the transaction to the blockchain.
-
 3. Confirm the transaction using its hash.
 
 #### **3.1 Get the signed transaction**
 
 <kbd>POST /duel/solana/join/sign-tx</kbd>
+
+**URL:** https://xapi.duelduck.com/duel/solana/join/sign-tx
 
 **Authorization:** Bearer \<USER\_ACCESS\_TOKEN\>
 
@@ -127,6 +129,8 @@ This process has two parts:
 #### **3.3 Confirm the join**
 
 <kbd>POST /duel/solana/join</kbd>
+
+**URL:** https://xapi.duelduck.com/duel/solana/join
 
 **Authorization:** Bearer \<USER\_ACCESS\_TOKEN\>
 
@@ -155,6 +159,8 @@ This process has two parts:
 After the deadline the duel automatically moves to `WaitingForResolve` state (status = 3). An authorized administrator submits the correct outcome.
 
 <kbd>PUT /admin/duel/resolve</kbd>
+
+**URL:** https://xapi.duelduck.com/admin/duel/resolve
 
 **Authorization:** Bearer \<ACCESS\_TOKEN\>
 

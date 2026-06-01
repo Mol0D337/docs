@@ -19,6 +19,8 @@ To sign in, request a verification code using your email address. The code will 
 
 <kbd>POST /auth/send-code</kbd>
 
+**URL:** https://xapi.duelduck.com/auth/send-code
+
 **Content-Type:** application/json
 
 ```text
@@ -36,6 +38,8 @@ A verification code will be sent to the specified email.
 Use the verification code to sign in and receive an access token. The access token is your authentication credential and is required for protected API endpoints.
 
 <kbd>POST /auth/sign-in-email</kbd>
+
+**URL:** https://xapi.duelduck.com/auth/sign-in-email
 
 **Content-Type:** application/json
 
@@ -85,6 +89,8 @@ The response contains:
 - Project settings.
 
 <kbd>POST /me/projects</kbd>
+
+**URL:** https://xapi.duelduck.com/me/projects
 
 **Authorization:** Bearer \<ACCESS\_TOKEN\>
 
